@@ -30,13 +30,14 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|min:3',
-            'description' => 'required',
+            'title' => 'required|min:3|max:255',
+            'description' => 'required|min:5',
         ]);
         Todo::create($request->all());
-        return redirect()->route('todos.index');
+        return redirect()
+            ->route('todos.index')
+            ->with('success', 'Todo created successfully.');
     }
-
     /**
      * Display the specified resource.
      */
@@ -59,12 +60,14 @@ class TodoController extends Controller
     public function update(Request $request, Todo $todo)
     {
         $request->validate([
-            'title' => 'required|min:3',
-            'description' => 'required',
+            'title' => 'required|min:3|max:255',
+            'description' => 'required|min:5',
         ]);
         
         $todo->update($request->all());
-        return redirect()->route('todos.index');
+        return redirect()
+            ->route('todos.index')
+            ->with('success', 'Todo updated successfully.');
     }
 
     /**
@@ -73,6 +76,8 @@ class TodoController extends Controller
     public function destroy(Todo $todo)
     {
         $todo->delete();
-        return redirect()->route('todos.index');
+        return redirect()
+            ->route('todos.index')
+            ->with('success', 'Todo deleted successfully.');
     }
 }

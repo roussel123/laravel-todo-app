@@ -10,6 +10,7 @@ class UserController extends Controller{
     }
     public function show($id){
         
+        $data = ["data" => "Data from the database"];
         return view('user')
             ->with('name', 'Roussel Rojas')
             ->with('age', 20)
