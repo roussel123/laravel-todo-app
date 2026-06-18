@@ -1,14 +1,5 @@
-@if(session('success'))
-    <div>
-        {{ session('success') }}
-    </div>
-@endif
 @extends('layouts.app')
 @section('content')
-    <a href="{{ route('todos.create') }}">
-        Add Todo
-    </a>
-    <hr>
     @foreach ($todos as $todo)
         <h3>{{ $todo->title }}</h3>
         <p>{{ $todo->description }}</p>
